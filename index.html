@@ -1,64 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Payouts Dashboard</title>
-<link rel="stylesheet" href="style2.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payout Dashboard</title>
+  <link rel="stylesheet" href="style3.css">
 </head>
+
 <body>
 
-<div class="main">
+  <div class="dashboard">
 
-   <div class="sidebar">
-      <h2 class="logo">ashik</h2>
-      <a href="#" class="visit-store">Visit Store</a>
-      <nav class="menu">
-        <a href="#">Home</a>
-        <a href="#">Orders</a>
-        <a href="#">Products</a>
-        <a href="#">Delivery</a>
-        <a href="#">Marketing</a>
-        <a href="#">Analytics</a>
-        <a class="active" href="#">Payouts</a>
-        <a href="#">Discounts</a>
-        <a href="#">Audience</a>
-        <a href="#">Appearance</a>
-        <a href="#">Plugins</a>
+    <aside class="sidebar">
+      <h2>PayFlow</h2>
+
+      <nav>
+        <a href="#" class="active">Dashboard</a>
+        <a href="#">Payouts</a>
+        <a href="#">Transactions</a>
+        <a href="#">Customers</a>
+        <a href="#">Reports</a>
+        <a href="#">Settings</a>
       </nav>
-      <div class="credits">
-        <p>Available Credits</p>
-        <span>₹222.10</span>
-      </div>
-    </div>
+    </aside>
 
-  <div class="d2">
-    <h3>Payouts</h3>
-    <input type="text" placeholder="Search here">
+    <main class="main">
+
+      <header>
+        <h1>Payout Dashboard</h1>
+        <div class="admin">👤 Admin</div>
+      </header>
+
+      <section class="cards">
+
+        <div class="card">
+          <h3>Total Payout</h3>
+          <h2 class="green">₹1,25,450</h2>
+        </div>
+
+        <div class="card">
+          <h3>Completed</h3>
+          <h2 class="blue">₹98,200</h2>
+        </div>
+
+        <div class="card">
+          <h3>Pending</h3>
+          <h2 class="orange">₹20,750</h2>
+        </div>
+
+        <div class="card">
+          <h3>Failed</h3>
+          <h2 class="red">₹6,500</h2>
+        </div>
+
+      </section>
+
+      <section class="payout-box">
+
+        <div class="table-header">
+          <h2>Recent Payouts</h2>
+
+          <input
+            type="text"
+            id="search"
+            placeholder="Search payout..."
+          >
+        </div>
+
+        <table id="payoutTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Customer</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Method</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>#PAY001</td>
+              <td>Rahul Sharma</td>
+              <td>13 Aug 2026</td>
+              <td>₹25,000</td>
+              <td>Bank Transfer</td>
+              <td><span class="status completed">Completed</span></td>
+            </tr>
+
+            <tr>
+              <td>#PAY002</td>
+              <td>Amit Kumar</td>
+              <td>12 Aug 2026</td>
+              <td>₹18,500</td>
+              <td>UPI</td>
+              <td><span class="status pending">Pending</span></td>
+            </tr>
+
+            <tr>
+              <td>#PAY003</td>
+              <td>Priya Singh</td>
+              <td>11 Aug 2026</td>
+              <td>₹32,000</td>
+              <td>Bank Transfer</td>
+              <td><span class="status completed">Completed</span></td>
+            </tr>
+
+            <tr>
+              <td>#PAY004</td>
+              <td>Vikash Yadav</td>
+              <td>10 Aug 2026</td>
+              <td>₹6,500</td>
+              <td>UPI</td>
+              <td><span class="status failed">Failed</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+
+    </main>
   </div>
 
-  <div class="d3">
-    <div><h4>Next Payout</h4><p>₹2,312.23</p></div>
-    <div><h4>Pending</h4><p>₹92,312.20</p></div>
-    <div><h4>Processed</h4><p>₹23,92,312.19</p></div>
-  </div>
-
-  <div class="d4">
-    <h4>Transactions | This Month</h4>
- <div><button>Payouts</button><button>Refunds</button></div>
-  </div>
-
-  <div class="d5">
-    <table>
-      <tr><th>Order ID</th><th>Status</th><th>Amount</th></tr>
-      <tr><td>#281209</td><td class="success">Successful</td><td>₹1,125</td></tr>
-      <tr><td>#281208</td><td class="processing">Processing</td><td>₹1,125</td></tr>
-      <tr><td>#281207</td><td class="failed">Failed</td><td>₹1,125</td></tr>
-    </table>
-  </div>
-
-</div>
-
+  <script src="script.js"></script>
 </body>
 </html>
