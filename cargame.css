@@ -1,193 +1,180 @@
-const car = document.getElementById("car");
-const game = document.getElementById("gameArea");
-const scoreDisplay = document.getElementById("score");
-
-const startBtn = document.getElementById("startBtn");
-const restartBtn = document.getElementById("restartBtn");
-const leftBtn = document.getElementById("leftBtn");
-const rightBtn = document.getElementById("rightBtn");
-
-let carX = 0;
-let carSpeed = 8;
-
-let enemies = [];
-let score = 0;
-let gameOver = true;
-let gameRunning = false;
-let frame = 0;
-let animationId;
-
-function setCarPosition() {
-    const maxX = game.clientWidth - car.offsetWidth;
-    carX = Math.max(0, Math.min(carX, maxX));
-    car.style.left = carX + "px";
-    car.style.transform = "none";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-function resetCar() {
-    carX = (game.clientWidth - car.offsetWidth) / 2;
-    setCarPosition();
+body {
+    background: #111;
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+    padding: 15px;
 }
 
-function moveLeft() {
-    if (!gameRunning) return;
-
-    carX -= carSpeed;
-    setCarPosition();
+.title {
+    font-size: 30px;
+    margin: 10px 0;
 }
 
-function moveRight() {
-    if (!gameRunning) return;
-
-    carX += carSpeed;
-    setCarPosition();
+.scoreBox {
+    font-size: 22px;
+    margin: 10px;
+    font-weight: bold;
 }
 
-document.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        moveLeft();
+#gameArea {
+    width: 400px;
+    height: 600px;
+    max-width: 100%;
+    margin: 10px auto;
+    position: relative;
+    overflow: hidden;
+    border: 4px solid white;
+    background: #444;
+    background-image:
+        linear-gradient(
+            to right,
+            transparent 48%,
+            white 48%,
+            white 52%,
+            transparent 52%
+        );
+    background-size: 100% 120px;
+    animation: roadMove 0.35s linear infinite;
+}
+
+@keyframes roadMove {
+    from {
+        background-position-y: 0;
     }
 
-    if (e.key === "ArrowRight") {
-        e.preventDefault();
-        moveRight();
+    to {
+        background-position-y: 120px;
+    }
+}
+
+#car {
+    width: 55px;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    z-index: 5;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.enemy {
+    width: 55px;
+    height: auto;
+    position: absolute;
+    z-index: 4;
+    user-select: none;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.buttons button,
+.touchControls button {
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.buttons button {
+    padding: 12px 25px;
+    background: #00a8ff;
+    color: white;
+    font-size: 16px;
+}
+
+#restartBtn {
+    background: #e84118;
+}
+
+.touchControls {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 15px auto;
+}
+
+.touchControls button {
+    width: 75px;
+    height: 55px;
+    font-size: 25px;
+    background: #273c75;
+    color: white;
+    touch-action: manipulation;
+}
+
+.touchControls button:active,
+.buttons button:active {
+    transform: scale(0.95);
+}
+
+.instruction {
+    font-size: 14px;
+    color: #bbb;
+    margin-top: 10px;
+}
+
+@media (max-width: 500px) {
+    body {
+        padding: 10px;
     }
 
-    if (e.key === " " && gameOver) {
-        startGame();
-    }
-});
-
-leftBtn.addEventListener("touchstart", function (e) {
-    e.preventDefault();
-    moveLeft();
-});
-
-rightBtn.addEventListener("touchstart", function (e) {
-    e.preventDefault();
-    moveRight();
-});
-
-leftBtn.addEventListener("click", moveLeft);
-rightBtn.addEventListener("click", moveRight);
-
-function spawnEnemy() {
-    const enemy = document.createElement("div");
-
-    enemy.classList.add("enemy");
-
-    enemy.textContent = "🚗";
-    enemy.style.position = "absolute";
-    enemy.style.fontSize = "45px";
-    enemy.style.width = "55px";
-    enemy.style.height = "55px";
-    enemy.style.lineHeight = "55px";
-    enemy.style.textAlign = "center";
-
-    const maxX = game.clientWidth - 55;
-
-    enemy.style.left = Math.floor(Math.random() * maxX) + "px";
-    enemy.style.top = "-60px";
-
-    game.appendChild(enemy);
-    enemies.push(enemy);
-}
-
-function isCrash() {
-    const carRect = car.getBoundingClientRect();
-
-    for (const enemy of enemies) {
-        const enemyRect = enemy.getBoundingClientRect();
-
-        if (
-            carRect.left < enemyRect.right &&
-            carRect.right > enemyRect.left &&
-            carRect.top < enemyRect.bottom &&
-            carRect.bottom > enemyRect.top
-        ) {
-            return true;
-        }
+    .title {
+        font-size: 24px;
     }
 
-    return false;
-}
-
-function endGame() {
-    gameRunning = false;
-    gameOver = true;
-
-    cancelAnimationFrame(animationId);
-
-    alert("💥 GAME OVER!\nYour Score: " + score);
-}
-
-function gameLoop() {
-    if (!gameRunning) return;
-
-    frame++;
-
-    if (frame % 45 === 0) {
-        spawnEnemy();
+    .scoreBox {
+        font-size: 19px;
     }
 
-    enemies.forEach((enemy, index) => {
-        let top = parseFloat(enemy.style.top);
-
-        top += 4 + score * 0.03;
-
-        enemy.style.top = top + "px";
-
-        if (top > game.clientHeight) {
-            enemy.remove();
-            enemies.splice(index, 1);
-
-            score++;
-            scoreDisplay.textContent = score;
-        }
-    });
-
-    if (isCrash()) {
-        endGame();
-        return;
+    #gameArea {
+        width: 100%;
+        height: 70vh;
+        max-height: 600px;
     }
 
-    animationId = requestAnimationFrame(gameLoop);
-}
-
-function clearEnemies() {
-    enemies.forEach(enemy => enemy.remove());
-    enemies = [];
-}
-
-function startGame() {
-    clearEnemies();
-
-    score = 0;
-    frame = 0;
-    scoreDisplay.textContent = "0";
-
-    gameOver = false;
-    gameRunning = true;
-
-    resetCar();
-
-    cancelAnimationFrame(animationId);
-    gameLoop();
-}
-
-function restartGame() {
-    startGame();
-}
-
-startBtn.addEventListener("click", startGame);
-restartBtn.addEventListener("click", restartGame);
-
-window.addEventListener("resize", function () {
-    if (gameRunning) {
-        setCarPosition();
+    #car,
+    .enemy {
+        width: 45px;
     }
-});
 
-resetCar();
+    .buttons button {
+        padding: 10px 18px;
+        font-size: 14px;
+    }
+
+    .touchControls button {
+        width: 70px;
+        height: 52px;
+    }
+}
+
+@media (max-width: 350px) {
+    #gameArea {
+        height: 65vh;
+    }
+
+    .touchControls {
+        gap: 15px;
+    }
+
+    .touchControls button {
+        width: 60px;
+        height: 48px;
+    }
+}
 
