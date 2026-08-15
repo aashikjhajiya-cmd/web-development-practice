@@ -1,0 +1,279 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f1f3f6;
+    color: #222;
+}
+
+header {
+    background: #2874f0;
+    min-height: 65px;
+    padding: 10px 5%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+header input {
+    flex: 1;
+    max-width: 600px;
+    padding: 12px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+}
+
+.search-btn,
+.login,
+.cart {
+    border: none;
+    padding: 11px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.search-btn {
+    margin-left: -12px;
+    background: #ff9f00;
+    color: white;
+}
+
+.login {
+    background: white;
+    color: #2874f0;
+    font-weight: bold;
+}
+
+.cart {
+    background: transparent;
+    color: white;
+    font-weight: bold;
+}
+
+.categories {
+    background: white;
+    padding: 16px 5%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    overflow-x: auto;
+    box-shadow: 0 1px 4px #ccc;
+}
+
+.categories span {
+    white-space: nowrap;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.banner {
+    margin: 18px auto;
+    max-width: 1200px;
+    min-height: 230px;
+    padding: 50px 30px;
+    background: linear-gradient(120deg, #2874f0, #00b7ff);
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.banner h1 {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.banner p {
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.banner button {
+    background: #ff9f00;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.products-section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.products-section h2 {
+    margin-bottom: 20px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.product {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px #ccc;
+}
+
+.product-img {
+    height: 120px;
+    font-size: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product h3 {
+    margin: 10px 0;
+}
+
+.product p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.product strong {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.product button {
+    background: #ff9f00;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+footer {
+    margin-top: 30px;
+    padding: 35px 6% 20px;
+    background: #172337;
+    color: white;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    text-align: left;
+}
+
+.footer-content h3 {
+    color: #ff9f00;
+    margin-bottom: 12px;
+}
+
+.footer-content p {
+    color: #ddd;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.copyright {
+    max-width: 1200px;
+    margin: 25px auto 0;
+    padding-top: 18px;
+    border-top: 1px solid #3a4658;
+    text-align: center;
+    color: #aaa;
+    font-size: 13px;
+}
+
+@media (max-width: 800px) {
+    header {
+        flex-wrap: wrap;
+    }
+
+    header input {
+        order: 5;
+        flex-basis: 100%;
+        max-width: none;
+    }
+
+    .search-btn {
+        display: none;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .banner h1 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 500px) {
+    header {
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .login,
+    .cart {
+        padding: 8px;
+    }
+
+    .categories {
+        padding: 12px;
+        justify-content: flex-start;
+    }
+
+    .banner {
+        margin: 10px;
+        padding: 35px 15px;
+    }
+
+    .banner h1 {
+        font-size: 27px;
+    }
+
+    .banner p {
+        font-size: 16px;
+    }
+
+    .products-section {
+        padding: 12px;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+    }
+}
