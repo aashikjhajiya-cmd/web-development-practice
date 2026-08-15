@@ -1,99 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flipkart Clone</title>
-  <link rel="stylesheet" href="style1.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flipkart Clone</title>
+<link rel="stylesheet" href="flipkart.css">
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo">amazon</div>
-    <input type="text" >
-    <button class="login-btn">Login</button>
-    <nav>
-      <a href="#">setting</a>
-      <a href="#">More</a>
-      <a href="#">Cart</a>
-    </nav>
+
+<header>
+    <div class="logo">Flipkart</div>
+    <input id="search" type="text" placeholder="Search for products, brands and more">
+    <button class="search-btn" onclick="searchProduct()">Search</button>
+    <button class="login">Login</button>
+    <button class="cart" onclick="showCart()">🛒 Cart <span id="cartCount">0</span></button>
 </header>
-  <section class="categories">
-    <div>Fashion</div>
-    <div>Mobiles</div>
-    <div>Fashion</div>
-    <div>Laptops</div>
-    <div>Home</div>
-    <div>Electronic</div>
-    <div>Travel</div>
-    <div>Toys</div>
-    <div>Bikes</div>
-  </section>
-  <section class="banner">
-    <h2>Flights Starting ₹1,499* Never Before Deals!</h2>
-    <p>Code: FESTIVE | 10% Instant Discount</p>
-  </section>
-  <section class="section">
-    <h3>Get Set for Sports</h3>
+
+<nav class="categories">
+    <span>Electronics</span>
+    <span>Mobiles</span>
+    <span>Fashion</span>
+    <span>Grocery</span>
+    <span>Home</span>
+    <span>Appliances</span>
+    <span>Beauty</span>
+    <span>Travel</span>
+</nav>
+
+<section class="banner">
+    <h1>Big Saving Days</h1>
+    <p>Best deals on your favourite products</p>
+    <button onclick="scrollToProducts()">Shop Now</button>
+</section>
+
+<section class="products-section" id="products">
+    <h2>Best Deals</h2>
+
     <div class="products">
-      <div class="card">
-        <img src="https://www.shutterstock.com/shutterstock/photos/2611530247/display_1500/stock-photo-blank-t-shirt-front-and-back-mockup-white-background-plain-cotton-t-shirt-mockup-template-for-2611530247.jpg" alt="Product">
-        <p>Men’s T-shirt</p>
-        <a href="#">Buy Now</a>
-      </div>
-      <div class="card">
-        <img src="https://5.imimg.com/data5/IE/YI/MY-53110779/mens-jacket-1000x1000.jpg" alt="Product">
-        <p>Jackets</p>
-        <a href="#">Buy Now</a>
-      </div>
-      <div class="card">
-        <img src="https://m.media-amazon.com/images/S/aplus-media-library-service-media/b4d706a9-d9bd-4618-8627-a205098f610b.__CR0,0,1464,600_PT0_SX1464_V1___.jpg" alt="Product">
-        <p>Men’s Tracksuit</p>
-        <a href="#">Buy Now</a>
-      </div>
+
+        <div class="product">
+            <div class="product-img">📱</div>
+            <h3>Smartphone</h3>
+            <p>Latest 5G Smartphone</p>
+            <strong>₹14,999</strong>
+            <button onclick="addToCart('Smartphone')">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <div class="product-img">💻</div>
+            <h3>Laptop</h3>
+            <p>Powerful Performance Laptop</p>
+            <strong>₹49,999</strong>
+            <button onclick="addToCart('Laptop')">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <div class="product-img">🎧</div>
+            <h3>Headphones</h3>
+            <p>Wireless Bluetooth Headphones</p>
+            <strong>₹1,499</strong>
+            <button onclick="addToCart('Headphones')">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <div class="product-img">⌚</div>
+            <h3>Smart Watch</h3>
+            <p>Fitness Smart Watch</p>
+            <strong>₹1,999</strong>
+            <button onclick="addToCart('Smart Watch')">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <div class="product-img">👟</div>
+            <h3>Running Shoes</h3>
+            <p>Comfortable Sports Shoes</p>
+            <strong>₹999</strong>
+            <button onclick="addToCart('Running Shoes')">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <div class="product-img">📺</div>
+            <h3>Smart TV</h3>
+            <p>Full HD Smart Television</p>
+            <strong>₹24,999</strong>
+            <button onclick="addToCart('Smart TV')">Add to Cart</button>
+        </div>
+
     </div>
-  </section>
- <section class="section">
-    <h3>Best of Electronics</h3>
-    <div class="products">
-      <div class="card">
-        <img src="https://m.media-amazon.com/images/I/714hINuPoBL.jpg" alt="Camera">
-        <p>Camera</p>
-        <a href="#">Buy Now</a>
-      </div>
-      <div class="card">
-        <img src="https://m.media-amazon.com/images/I/71fJ1wZK-HL.jpg" alt="Smart Watch">
-        <p>Smart Watch</p>
-        <a href="#">Buy Now</a>
-      </div>
-      <div class="card">
-        <img src="https://images-na.ssl-images-amazon.com/images/I/71RTruFctrL._AC_UL116_SR116,116_.jpg" alt="Monitor">
-        <p>Monitor</p>
-        <a href="#">Buy Now</a>
-      </div>
-    </div>
-  </section>
+</section>
+
 <footer>
-    <div class="footer-links">
-      <div>
-        <h4>ABOUT</h4>
-        <a href="#">Contact Us</a>
-        <a href="#">About Us</a>
-        <a href="#">Careers</a>
-      </div>
-      <div>
-        <h4>HELP</h4>
-        <a href="#">Payments</a>
-        <a href="#">Shipping</a>
-        <a href="#">FAQ</a>
-      </div>
-      <div>
-        <h4>CONSUMER POLICY</h4>
-        <a href="#">Cancellation & Returns</a>
-        <a href="#">Terms of Use</a>
-        <a href="#">Security</a>
-      </div>
+    <div class="footer-content">
+        <div>
+            <h3>About This Project</h3>
+            <p>Flipkart-inspired e-commerce website created by Ashik Jatav.</p>
+        </div>
+        <div>
+            <h3>Developer</h3>
+            <p>Ashik Jatav</p>
+            <p>Frontend Developer | C++ & DSA</p>
+        </div>
+        <div>
+            <h3>Contact Us</h3>
+            <p>Email: aashikjhajiya@jmail.com</p>
+            <p>GitHub: aashikjhajiya-cmd</p>
+        </div>
     </div>
-    <p>© 2007-2023 Flipkart Clone. All rights reserved.</p>
-  </footer>
+    <p class="copyright">© 2026 Flipkart Clone | Designed & Developed by Ashik Jatav</p>
+</footer>
+
+<script src="flipkart.js"></script>
 </body>
 </html>
